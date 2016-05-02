@@ -1,0 +1,10 @@
+DEFINE QLOCAL ('Q.SIRIUS.TO.SVISTA') +
+       DESCR('Notifications to SmartVista') +
+       DEFPSIST(YES) +
+       MAXDEPTH(2500000) +
+       MAXMSGL(41943040) +
+       BOTHRESH(0) +
+       BOQNAME(' ') +
+       REPLACE
+  
+END

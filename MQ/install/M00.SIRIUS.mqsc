@@ -1,0 +1,107 @@
+ALTER  QMGR +
+       MAXMSGL(41943040) +
+       CCSID(1208) +
+       SSLKEYR ('d:\IBM\WebSphere MQ\qmgrs\M00!SIRIUS\ssl\m00.sirius') +
+       FORCE
+
+DEFINE LISTENER ('M00.SIRIUS') +
+       TRPTYPE(TCP) +
+       IPADDR(' ') +
+       PORT(3333) +
+       BACKLOG(0) +
+       DESCR(' ') +
+       CONTROL(QMGR) +
+       REPLACE
+
+DEFINE QLOCAL(Q.SIRIUS.DLQ) +
+       LIKE(SYSTEM.DEAD.LETTER.QUEUE) +
+       DEFPSIST(YES) +
+       MAXDEPTH(1500000) +
+       MAXMSGL(41943040) +
+       REPLACE
+
+*--------------------------------------------------------------------
+DEFINE CHANNEL(SC.SIRIUS) +
+       CHLTYPE(SVRCONN) +
+       TRPTYPE(TCP) +
+       MAXMSGL(10485760) +
+       MCAUSER('srs99usr') +
+       SSLCAUTH(REQUIRED) +
+       SSLCIPH('RC4_MD5_US') +
+       SSLPEER('CN=00CA0001CSIRIUSsrs99usr,OU=00CA,O=Savings Bank of the Russian Federation,C=RU') +
+       REPLACE
+DEFINE CHANNEL(SC.SVISTA) +
+       CHLTYPE(SVRCONN) +
+       TRPTYPE(TCP) +
+       MAXMSGL(10485760) +
+       MCAUSER('sv99usr') +
+       SSLCAUTH(REQUIRED) +
+       SSLCIPH('RC4_MD5_US') +
+       SSLPEER('CN=00CA0001CSVsv99usr,OU=00CA,O=Savings Bank of the Russian Federation,C=RU') +
+       REPLACE
+
+*--------------------------------------------------------------------
+DEFINE QLOCAL ('Q.SIRIUS.AUDIT') +
+       DESCR('Audit Queue') +
+       DEFPSIST(NO) +
+       MAXDEPTH(2500000) +
+       MAXMSGL(41943040) +
+       BOTHRESH(0) +
+       BOQNAME(' ') +
+       REPLACE
+
+DEFINE QLOCAL ('Q.SIRIUS.DATA.ERIB') +
+       DESCR('ERIB DATA CACHE') +
+       DEFPSIST(NO) +
+       MAXDEPTH(2500000) +
+       MAXMSGL(41943040) +
+       BOTHRESH(0) +
+       BOQNAME(' ') +
+       REPLACE
+
+DEFINE QLOCAL ('Q.SIRIUS.ICON.ERIB') +
+       DESCR('Images from ERIB') +
+       DEFPSIST(NO) +
+       MAXDEPTH(2500000) +
+       MAXMSGL(41943040) +
+       BOTHRESH(0) +
+       BOQNAME(' ') +
+       REPLACE
+
+DEFINE QLOCAL ('Q.SIRIUS.LOG') +
+       DESCR('Sirius Log Queue') +
+       DEFPSIST(NO) +
+       MAXDEPTH(2500000) +
+       MAXMSGL(41943040) +
+       BOTHRESH(0) +
+       BOQNAME(' ') +
+       REPLACE
+
+DEFINE QLOCAL ('Q.SIRIUS.TEMP') +
+       DESCR('TEMPORARY QUEUE') +
+       DEFPSIST(NO) +
+       MAXDEPTH(2500000) +
+       MAXMSGL(41943040) +
+       BOTHRESH(0) +
+       BOQNAME(' ') +
+       REPLACE
+
+DEFINE QLOCAL ('Q.SIRIUS.TO.SVISTA') +
+       DESCR('Notifications to SmartVista') +
+       DEFPSIST(YES) +
+       MAXDEPTH(2500000) +
+       MAXMSGL(41943040) +
+       BOTHRESH(0) +
+       BOQNAME(' ') +
+       REPLACE
+
+DEFINE QLOCAL ('Q.SVISTA.TO.SIRIUS') +
+       DESCR('Tokens from SmartVista') +
+       DEFPSIST(YES) +
+       MAXDEPTH(2500000) +
+       MAXMSGL(41943040) +
+       BOTHRESH(0) +
+       BOQNAME(' ') +
+       REPLACE
+
+END

@@ -1,0 +1,28 @@
+DEFINE CHANNEL(SC.SIRIUS) +
+       CHLTYPE(SVRCONN) +
+       TRPTYPE(TCP) +
+       MAXMSGL(10485760) +
+       MCAUSER('srs99usr') +
+       SSLCAUTH(REQUIRED) +
+       SSLCIPH('RC4_MD5_US') +
+       SSLPEER('CN=00CA0001CSIRIUSsrs99usr,OU=00CA,O=Savings Bank of the Russian Federation,C=RU') +
+       REPLACE
+DEFINE CHANNEL(SC.SVISTA) +
+       CHLTYPE(SVRCONN) +
+       TRPTYPE(TCP) +
+       MAXMSGL(10485760) +
+       MCAUSER('sv99usr') +
+       SSLCAUTH(REQUIRED) +
+       SSLCIPH('RC4_MD5_US') +
+       SSLPEER('CN=00CA0001CSVsv99usr,OU=00CA,O=Savings Bank of the Russian Federation,C=RU') +
+       REPLACE
+DEFINE QLOCAL ('Q.SIRIUS.AUDIT') +
+       DESCR('Audit Queue') +
+       DEFPSIST(NO) +
+       MAXDEPTH(5000000) +
+       MAXMSGL(41943040) +
+       BOTHRESH(0) +
+       BOQNAME(' ') +
+       REPLACE
+  
+END
